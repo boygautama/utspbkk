@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Member extends Model
 {
     use HasFactory;
+     protected $table = 'pegawai';
+     protected $primaryKey = "id";
+     protected $fillable = [
+     'no_identitas','nama_member', 'alamat', 'no_hp','user_id'
+     ];
+     public $timestamps = true;
+
+     public function users()
+     {
+     return $this->hasOne('App\Models\User', 'user_id');
+     }
 }
