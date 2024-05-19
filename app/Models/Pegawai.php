@@ -17,6 +17,6 @@ class Pegawai extends Model
 
     public function users()
     {
-        return $this->hasOne('App\Models\User', 'user_id');
+        return $this->hasOne('App\Models\User', 'id','user_id');
     }
 }
