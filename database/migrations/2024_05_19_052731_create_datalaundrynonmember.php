@@ -11,13 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('datalaundrymember', function (Blueprint $table) {
+        Schema::create('datalaundrynonmember', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('member_id')->constrained('members');
             $table->date('tgl_transaksi');
+            $table->string('nama_customer');
+            $table->string('alamat');
+            $table->string('no_telp');
+            $table->string('keterangan');
             $table->enum('status_laundry', ['menunggu', 'diproses', 'selesai']);
             $table->enum('status_pembayaran', ['bayar', 'belum']);
-            $table->string('lokasi_kirim');
+            $table->text('lokasi_kirim');
+            $table->foreignId('pegawai_id')->constrained('pegawai');
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('datalaundrymember');
+        Schema::dropIfExists('datalaundrynonmember');
     }
 };

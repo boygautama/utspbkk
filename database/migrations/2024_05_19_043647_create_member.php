@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('nama_member');
             $table->string('alamat');
             $table->string('no_hp');
-            $table->string('password');
+            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
     }

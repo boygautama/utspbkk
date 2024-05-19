@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('pembelianbarang', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pegawai_id')->constrained('pegawais');
+            $table->foreignId('pegawai_id')->constrained('pegawai');
+            $table->foreignId('kode_barang')->constrained('barang');
             $table->date('tanggal');
             $table->integer('jumlah');
             $table->timestamps();

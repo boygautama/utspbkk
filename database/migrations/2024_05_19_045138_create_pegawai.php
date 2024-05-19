@@ -16,8 +16,7 @@ return new class extends Migration
             $table->string('nama_pegawai');
             $table->string('alamat');
             $table->string('no_hp');
-            $table->string('password');
-            $table->enum('jabatan', ['karyawan', 'supervisi', 'administrator']);
+            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
     }
