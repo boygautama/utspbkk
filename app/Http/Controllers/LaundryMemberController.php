@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class LaundryMemberController extends Controller
 {
-    public function index(): View
+    public function index()
     {
     $data = PembelianBarang::latest()->paginate(10);
     return view('pembelianbarang.index', compact('data'));

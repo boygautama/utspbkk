@@ -53,7 +53,7 @@
                                 <select class="form-control" name="jabatan" id="jabatan">
                                   <option value="karyawan">Karyawan</option>
                                   <option value="supervisi">Sipervisi</option>
-                                  <option value="admin">Administrator</option>
+                                  <option value="administrator">Administrator</option>
                                  </select>
                                  @error('jabatan')
                                  <div class="alert alert-danger mt-2">

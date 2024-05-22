@@ -27,39 +27,53 @@ class PegawaiController extends Controller
          'jabatan' => 'required'
          ]);
 
-          $simpanuser = User::create([
-          'name' => $request->nama,
-          'email' => $request->email,
-          'password' => bcrypt($request->password),
-          'jabatan' => $request->jabatan,
-          ]);
-          $userid = $simpanuser->id();
-          dd($userid);
-         Pegawai::create([
-         'nama_pegawai' => $request->nama,
-         'no_hp' => $request->nohp,
-         'alamat' => $request->alamat,
-         'user_id' => $userid
-         ]);
+         $simpanuser = new User;
+         $simpanuser->name = $request->nama;
+         $simpanuser->email = $request->email;
+         $simpanuser->password = bcrypt($request->password);
+         $simpanuser->jabatan = $request->jabatan;
+         $simpanuser->save();
+         $userid = $simpanuser->id;
 
-         //redirect to index
-         return redirect()->route('pegawai.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        Pegawai::create([
+        'nama_pegawai' => $request->nama,
+        'no_hp' => $request->nohp,
+        'alamat' => $request->alamat,
+        'user_id' => $userid
+        ]);
+
+        //redirect to index
+        return redirect()->route('pegawai.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
     public function edit($id)
     {
-        $data = Pegawai::where('id',$id)->first();
+        $data = Pegawai::with('users')->where('id',$id)->first();
         return view('pegawai.edit', compact('data'));
     }
     public function update(Request $request, $id)
     {
+        $data = Pegawai::find($id);
+        $data->nama_pegawai = $request->nama_pegawai;
+        $data->alamat = $request->alamat;
+        $data->no_hp = $request->nomor_hp;
+        $data->save();
+
+        $user = User::find($data->user_id);
+        $user->email = $request->email_pegawai;
+        $user->jabatan = $request->jabatan;
+        $user->save();
         return redirect()->route('pegawai.index');
     }
     public function destroy($id)
     {
-        return redirect()->route('pegawai.index');
+        $data = Pegawai::find($id);
+        $data->delete();
+        $data->users->delete();
+        return redirect()->route('pegawai.index')->with(['success', 'Data Berhasil Dihapus!']);
     }
     public function show($id)
     {
-    return back();
+        $data = Pegawai::find($id);
+        return view('pegawai.show', compact('data'));
     }
 }
