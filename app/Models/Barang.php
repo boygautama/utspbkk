@@ -11,7 +11,7 @@ class Barang extends Model
      protected $table = 'pegawai';
      protected $primaryKey = "id";
      protected $fillable = [
-     'no_identitas','nama_member', 'alamat', 'no_hp','user_id'
+     'no_identitas','nama_member', 'alamat', 'no_hp','user_id','stok'
      ];
      public $timestamps = true;
 

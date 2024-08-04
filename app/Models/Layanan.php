@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Layanan extends Model
 {
     use HasFactory;
+    protected $table = 'layanan';
+    protected $primaryKey = "id";
+    protected $fillable = [
+        'nama', 'durasi', 'harga'
+    ];
+    public $timestamps = true;
 }

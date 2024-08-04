@@ -15,12 +15,8 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('assets/css/adminlte.min.css') }}">
-    <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @include('layouts.partials.css')
+
 
 </head>
 
@@ -29,16 +25,13 @@
         @include('layouts.partials.navbar')
         <div class="content-wrapper">
             @include('layouts.partials.breadcumb')
-        @yield('content')
+            <div class="container">
+                @yield('content')
+            </div>
         </div>
         @include('layouts.partials.footer')
     </div>
 </body>
-<!-- jQuery -->
-<script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
-<!-- Bootstrap 4 -->
-<script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset('assets/js/adminlte.min.js') }}"></script>
+@include('layouts.partials.js')
 
 </html>
