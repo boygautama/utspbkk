@@ -35,6 +35,7 @@ Route::resource('/pembelian-barang', PembelianBarangController::class);
 Route::resource('/member', MemberController::class);
 Route::resource('/laundry-member', LaundryMemberController::class);
 Route::resource('/laundry', LaundryNonMemberController::class);
+Route::resource('/layanan', LayananController::class);
 
 
 
