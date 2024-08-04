@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('datalaundrynonmember', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('pegawai_id')->constrained('pegawai');
+            $table->foreignId('layanan_id')->constrained('layanan');
             $table->date('tgl_transaksi');
             $table->string('nama_customer');
             $table->string('alamat');
@@ -21,7 +23,6 @@ return new class extends Migration
             $table->enum('status_laundry', ['menunggu', 'diproses', 'selesai']);
             $table->enum('status_pembayaran', ['bayar', 'belum']);
             $table->text('lokasi_kirim');
-            $table->foreignId('pegawai_id')->constrained('pegawai');
             $table->timestamps();
         });
     }

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('member_id')->constrained('member');
              $table->foreignId('pegawai_id')->constrained('pegawai');
+             $table->foreignId('layanan_id')->constrained('layanan');
             $table->date('tgl_transaksi');
             $table->enum('status_laundry', ['menunggu', 'diproses', 'selesai']);
             $table->enum('status_pembayaran', ['bayar', 'belum']);
