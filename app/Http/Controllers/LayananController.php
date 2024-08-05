@@ -20,10 +20,9 @@ class LayananController extends Controller
     }
     public function store(Request $request)
     {
-        dd($request);
         $request->validate([
             'namalayanan' => 'required',
-            'durqasi' => 'required',
+            'durasi' => 'required',
             'harga' => 'required'
         ]);
 
